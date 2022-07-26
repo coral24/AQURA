@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.mapper.CommentTipMapper">
+<!-- 물생활 꿀팁 공유 페이지를 위한 mapper -->
+
+	<sql id="commentColumns">
+		  idx
+		, content
+	</sql>
+			<!-- db 칼럼 -->
+	
+	<select id="selectCommentList" resultType="CommentTipDTO">
+		SELECT
+			<include refid="commentColumns" />
+		FROM
+			comment_tip
+		
+		ORDER BY
+			idx ASC
+	</select>
+				<!-- 데이터 전체 list 조회 -->
+	
+	
+	<insert id="insertComment" parameterType="String">
+		INSERT INTO comment_tip (
+			content
+		) VALUES (
+			 
+		 #{content}
+		 )
+	</insert>
+				<!-- 데이터 삽입 -->
+	
+	
+	<select id="selectCommentDetail" parameterType="int" resultType="CommentTipDTO">
+		SELECT
+			<include refid="commentColumns" />
+		FROM
+			comment_tip
+		
+		AND
+			idx = #{idx}
+	</select>
+				<!-- 데이터 상세조회 -->
+	
+	<update id="updateComment" parameterType="CommentTipDTO">
+		UPDATE comment_tip
+		SET
+			  post_num = #{post_num}
+			, content = #{content}
+			, writer = #{writer}
+		WHERE
+			idx = #{idx}
+	</update>
+				<!-- 데이터 수정 -->
+	
+	<update id="deleteComment" parameterType="int">
+		UPDATE comment_tip
+		SET
+			  delete_yn = 'Y'
+			, delete_time = NOW()
+		WHERE
+			idx = #{idx}
+	</update>
+				<!-- 데이터 삭제 -->
+	
+	
+	<select id="selectCommentTotalCount" parameterType="CommentTipDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			comment_tip
+		WHERE
+			delete_yn = 'N'
+		
+	</select>
+				<!-- 데이터 조회수 -->
+	
+
+</mapper>

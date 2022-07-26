@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.WaterTestMapper">
+<!-- 물생활 test를 위한 mapper -->
+	<sql id="testColumns">
+		  idx
+		, fishbowl
+		, percolation
+		, waterChange
+		, nutrients
+		, medicine
+		, floor
+		, ph
+		, food
+		, quality
+		, reaction
+	</sql>
+			<!-- db 칼럼 -->
+	
+	<insert id="insertTotal" parameterType="int">
+		 INSERT INTO total(total)
+		 VALUES(
+		 	 
+			 #{total}
+		 )
+	</insert>
+				<!-- 데이터 삽입 -->
+	
+	<select id="getMyScore" resultType="int">
+	SELECT 
+		total
+	FROM 
+	 	total
+	ORDER BY
+		idx DESC limit 1
+		
+	</select>
+				<!-- 내 점수 조회 -->
+	
+	<select id="getMember" resultType="int">
+	SELECT 
+		idx
+	FROM 
+	 	total
+	ORDER BY
+		idx DESC limit 1
+		
+	</select>
+				<!-- 테스트 전체 참가 인원 조회 -->
+	
+	<select id="getMaxScore" resultType="int">
+	SELECT 
+		total
+	FROM 
+	 	total
+	ORDER BY
+		total DESC limit 1
+		
+	</select>
+				<!-- 최고점 조회 -->
+	
+	<select id="getMinScore" resultType="int">
+	SELECT 
+		total
+	FROM 
+	 	total
+	ORDER BY
+		total ASC limit 1
+		
+	</select>
+				<!-- 최저점 조회 -->
+	
+	
+	<select id="getScoreAvg" resultType="double">
+	SELECT 
+		AVG(total)
+	FROM 
+	 	total
+	
+	</select>
+				<!-- 전체 평균 계산 -->
+	
+	
+	
+	
+	<insert id="insertTest" parameterType="WaterTestDTO">
+		INSERT INTO test(
+			<include refid="testColumns"/>
+		) VALUES(
+			  #{idx}
+			, #{fishbowl}
+			, #{percolation}
+			, #{waterChange}
+			, #{nutrients}
+			, #{medicine}
+			, #{floor}
+			, #{ph}
+			, #{food}
+			, #{quality}
+			, #{reaction}
+		)
+	</insert>
+				<!-- 데이터 삽입 -->
+	
+	<select id="getAverageTest" resultType="double">
+		SELECT
+			(t.fishbowl+t.percolation+t.waterChange+t.nutrients+t.medicine+t.floor+t.ph+t.food+t.quality+t.reaction)/10 
+		
+		FROM test AS t 
+		
+		ORDER BY
+		 	idx DESC limit 1
+	
+	</select>
+					<!-- 전체 평균 계산 -->
+	
+</mapper>

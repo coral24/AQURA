@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+	<th:block >
+		<title>테스트 참가 인원</title>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div class="card-content">
+			
+				
+		<h3>이 테스트에 참가한 사람들은</h3>
+		<p th:text="${member}"></p>
+	
+	<form class="form-horizontal"  method="get"></form>
+		
+
+				
+			
+		</div>
+	</th:block>
+
+
+
+
+</html>>

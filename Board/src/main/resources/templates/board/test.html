@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+	<th:block >
+		<title>물생활 테스트</title>
+	</th:block>
+
+	<th:block layout:fragment="content">
+		<div class="card-content">
+			
+			<form class="form-horizontal" action="/multi" method="get"  >	
+				<input type="hidden">
+				
+			
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label">1. 충분한 크기의 어항을 사용하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="5" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">2. 충분한 여과시설을 사용하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="10" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">3. 물갈이 시기를 잘 지키고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="20" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">4. 물갈이제를 비롯한 영양제를 사용하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="5" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">5. 응급시의 비상 의약품을 소지하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="10" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">6. 어종에 맞는 종류의 바닥재를 사용하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="5" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">7. 어항의 산성도를 알맞게 유지하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+					<input type="checkbox" name="checkedValue" value="5" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">8. 어종에 알맞는 먹이를 급여하고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="10" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">9. 수질 관리가 제대로 되고 있습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="15" class="myChk"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">10. 물고기의 먹이반응에 이상이 없습니까?</label>
+					<div class="col-sm-5" style="margin-top: 10px;">
+						<input type="checkbox" name="checkedValue" value="15" class="myChk"/>
+					</div>
+				</div>
+
+				<div id="btnDiv" class="btn_wrap text-center" th:object="${params}">
+	
+					
+					<button type="submit" class="btn btn-primary waves-effect waves-light">결과보기</button>
+				</div>
+				
+
+				
+			</form>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+				
+			
+			/*
+			function arrayChk(){ 
+ 
+   			var arrAn = [];  
+  
+   			var m = $('.myChk'); 
+ 
+  		    var arrLen = $('.myChk').length; 
+      
+    		for ( var i= 0; i < arrLen ; i++){  
+       			 var  w = m[i];                     
+        			 if (w.checked){
+        			 	if(i=0){
+        			 	arrAn.push( { "fishbowl" : w.value } ); 
+        			 	} 
+        			 	if(i=1){
+        			 	arrAn.push( { "percolation" : w.value } ); 
+        			 	} 
+        			 	if(i=2){
+        			 	arrAn.push( { "waterChange" : w.value } ); 
+        			 	} 
+        			 	if(i=3){
+        			 	arrAn.push( { "nutrients" : w.value } ); 
+        			 	} 
+        			 	if(i=4){
+        			 	arrAn.push( { "medicine" : w.value } ); 
+        			 	} 
+        			 	if(i=5){
+        			 	arrAn.push( { "floor" : w.value } ); 
+        			 	} 
+        			 	if(i=6){
+        			 	arrAn.push( { "ph" : w.value } ); 
+        			 	} 
+        			 	if(i=7){
+        			 	arrAn.push( { "food" : w.value } ); 
+        			 	} 
+        			 	if(i=8){
+        			 	arrAn.push( { "quality" : w.value } ); 
+        			 	} 
+        			 	if(i=9){
+        			 	arrAn.push( { "reaction" : w.value } ); 
+        			 	}  
+          				
+          				console.log(w.value ); 
+        			} 
+        			
+        			else{
+        			if(i=0){
+        			 	arrAn.push( { "fishbowl" : 0 } ); 
+        			 	} 
+        			 	if(i=1){
+        			 	arrAn.push( { "percolation" : 0} ); 
+        			 	} 
+        			 	if(i=2){
+        			 	arrAn.push( { "waterChange" : 0 } ); 
+        			 	} 
+        			 	if(i=3){
+        			 	arrAn.push( { "nutrients" :0 } ); 
+        			 	} 
+        			 	if(i=4){
+        			 	arrAn.push( { "medicine" : 0 } ); 
+        			 	} 
+        			 	if(i=5){
+        			 	arrAn.push( { "floor" : 0 } ); 
+        			 	} 
+        			 	if(i=6){
+        			 	arrAn.push( { "ph" : 0 } ); 
+        			 	} 
+        			 	if(i=7){
+        			 	arrAn.push( { "food" : 0 } ); 
+        			 	} 
+        			 	if(i=8){
+        			 	arrAn.push( { "quality" : 0 } ); 
+        			 	} 
+        			 	if(i=9){
+        			 	arrAn.push( { "reaction" : 0 } ); 
+        			 	}  
+          				
+        			
+        			
+        			}
+        			 
+      		}
+    
+    		var test = JSON.stringify(arrAn);  //convert javascript array to JSON string
+   			console.log( 'result' + test);
+    	
+   			alert(test);
+ 
+    		return test;
+  
+   }
+   
+   
+   */
+   
+   
+			/*]]>*/
+		</script>
+	</th:block>
+	
+</html>

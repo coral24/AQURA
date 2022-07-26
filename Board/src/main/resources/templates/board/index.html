@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+
+ 	<th:block layout:fragment="title">
+		<title>AQURA:물고기와 함께하는 사람들의 공간</title>
+	</th:block>
+	<th:block layout:fragment="content">
+	<img src="AQURA.jpg" width=1700 height=300>
+	
+	</th:block>
+	
+
+	<th:block layout:fragment="add-content">
+
+		<div class="box-content">
+		
+			<div class="card-content">
+				<div class="clearfix">
+					
+					<h4>함께 이야기 해요</h4>
+
+					<button type="button" class="btn btn-primary" onclick="location.href='http://localhost:8080/board/list.do'">담수어</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='http://localhost:8080/board/saltWater/list.do'">해수어</button>
+					</div>
+					
+					
+				<div class="clearfix">
+					<h4 class="box-title pull-left">물생활 꿀팁 공유</h4>
+					<hr>
+		
+					<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/commentTip'">보러가기</button>
+					
+				</div>
+				<div class="clearfix">
+					<h4 class="box-title pull-left">나는 몇점 짜리 반려인일까?</h4>
+					<hr>
+					<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/test'">물생활 테스트</button>
+					
+				</div>
+				
+				
+			</div>
+		</div>
+	</th:block>
+	
+	
+	
+	</th:block>
+	
+
+	
+	
+	
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+	<th:block >
+		<title>과연 당신의 점수는?!</title>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div class="card-content">
+			
+				
+		<h3>당신의 점수는</h3>
+		<p th:text="${score}"></p>
+	
+	<form class="form-horizontal"  method="get"></form>
+		
+
+				
+			
+		</div>
+	</th:block>
+
+
+
+
+</html>

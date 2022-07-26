@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+	<th:block >
+		<title>당신은 완벽한 물생활러 입니다.</title>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+	
+		<img src="perfect.jpg" width=500 height=300>
+		<div class="card-content">
+			
+				
+		
+		<br>
+		<h1>테스트의 상세 결과가 알고 싶다면?!</h1>
+
+
+		<h4>당신의 점수가 궁금한가요?</h4>
+		<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/board/testScore'">점수 보기</button>
+
+		<h4>테스터들의 평균 점수는?</h4>
+		<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/board/testAverage'">평균 보기</button>
+		
+		<h4>몇명의 사람들이 이 테스트에 참가했을까</h4>
+		<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/board/testMember'">참가인원 보기</button>
+		
+		<h4>과연 최고점은?</h4>
+		<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/board/testMaxScore'">최고점 보기</button>
+		
+		<h4>과연 최저점은?</h4>
+		<button type="button" class="btn btn-primary"  onclick="location.href='http://localhost:8080/board/testMinScore'">최저점 보기</button>
+		
+		
+
+
+				
+			
+		</div>
+	</th:block>
+
+
+
+
+</html>

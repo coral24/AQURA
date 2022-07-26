@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.BoardSaltwaterMapper">
+<!-- 해수어 게시판 CRUD를 위한 mapper -->
+
+	<sql id="boardColumns">
+		  idx
+		, title
+		, content
+		, writer
+		, view_cnt
+		, notice_yn
+		, secret_yn
+		, delete_yn
+		, insert_time
+		, update_time
+		, delete_time
+	</sql>
+		<!-- db 칼럼 -->
+	
+	<insert id="insertBoard" parameterType="BoardDTO" useGeneratedKeys="true" keyProperty="idx">
+		INSERT INTO board_saltwater(
+			<include refid="boardColumns"/>
+		) VALUES (
+			  #{idx}
+			, #{title}
+			, #{content}
+			, #{writer}
+			, 0
+			, IFNULL(#{noticeYn}, 'N')
+			, IFNULL(#{secretYn}, 'N')
+			, 'N'
+			, NOW()
+			, NULL
+			, NULL			
+		)
+	</insert>
+			<!-- 데이터 삽입 -->
+	
+	<select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
+		SELECT
+			<include refid="boardColumns"/>
+		FROM
+			board_saltwater
+		WHERE
+			delete_yn = 'N'
+		AND
+			idx = #{idx}
+	</select>
+			<!-- 데이터 상세조회 -->
+	
+	<update id="updateBoard" parameterType="BoardDTO">
+		UPDATE board_saltwater
+		SET
+			  update_time = NOW()
+			, title = #{title}
+			, content = #{content}
+			, writer = #{writer}
+			, notice_yn = IFNULL(#{noticeYn}, 'N')
+			, secret_yn = IFNULL(#{secretYn}, 'N')
+		WHERE
+			idx = #{idx}
+	</update>
+			<!-- 데이터 수정 -->
+	
+	<update id="deleteBoard" parameterType="long">
+		UPDATE board_saltwater
+		SET
+			  delete_yn = 'Y'
+			, delete_time = NOW()
+		WHERE
+			idx = #{idx}
+	</update>
+			<!-- 데이터 삭제 -->
+	
+	<select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
+		SELECT
+			<include refid="boardColumns" />
+		FROM
+			board_saltwater
+		WHERE
+			delete_yn = 'N'
+		<include refid="CommonMapper.search" />
+		ORDER BY
+			notice_yn ASC,
+			idx DESC,
+			insert_time DESC
+		<include refid="CommonMapper.paging" />
+	</select>
+			<!-- 데이터 전체 list 조회 -->
+	
+
+	<select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			board_saltwater
+		WHERE
+			delete_yn = 'N'
+		<include refid="CommonMapper.search" />
+				<!-- 데이터 조회수 -->
+		
+	</select>
+</mapper>
